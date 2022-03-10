@@ -51,14 +51,14 @@
                 raise_layer {
                         label = "RAISE";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &   |  *  |  (  |  )  | BKSP |
-// |      |     |     |     |     |     |   |  -  |  =   |  [  |  ]  |  \  | "|"  |
-// | CTRL |     |     |     |     |     |   |  _  |  ENT |  {  |  }  | "|" |  `   |
-//                    | GUI |     | SPC |   | ENT |      | ALT |
+// |  TAB |  GUI_Q  |  GUI_W  |  #    |  GUI_R  |  GUI_T  |   |  ^  |  &   |  *  |  (  |  )  | BKSP |
+// |      |         |         |       |         |         |   |  -  |  =   |  [  |  ]  |  \  | "|"  |
+// | CTRL |         |  GUI_X  | GUI_C |  GUI_V  |         |   |  _  |  ENT |  {  |  }  | "|" |  `   |
+//                            | GUI   |         | SPC     |   | ENT |      | ALT |
                         bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-   &trans    &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp PIPE
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp UNDER &kp RET   &kp LBRC        &kp RBRC &kp PIPE &kp GRAVE
+   &kp  TAB  &kp LG(Q) &kp LG(W) &kp HASH  &kp LG(R) &kp LG(T)  &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
+   &trans    &trans    &trans    &trans    &trans    &trans     &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp PIPE
+   &kp LCTRL &trans    &kp LG(X) &kp LG(C) &kp LG(V) &trans     &kp UNDER &kp RET   &kp LBRC        &kp RBRC &kp PIPE &kp GRAVE
                     	     &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
                         >;
                 };

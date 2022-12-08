@@ -13,6 +13,8 @@
 #define LOWER 1
 #define RAISE 2
 #define SYMBOLS 3
+#define CTRL_LAYER 4
+#define CTRL_SHFT_LAYER 5
 
 / {
         keymap {
@@ -36,29 +38,29 @@
                 lower_layer {
                         label = "LOWER";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  | ENT |  8  | DEL |  DEL  | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |  BKSP |      |
-// | SHFT |     |     |     |     |     |   | =   | ESC |     |     |       |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+// | BTCLR |  BT1  |  BT2  | BT3 | BT4 | BT5 |   |  6  | ENT |  8  | DEL |  DEL | BKSP |
+// |  TAB  |   1   |   2   |  3  |  4  |  5  |   | LFT | DWN |  UP | RGT | BKSP |      |
+// | SHFT  |       |       |     |     |     |   |  =  | ESC |     |     |  \   |      |
+//                    | GUI | ALT | ALT + SPC |   | ENT |     | ALT |
                         bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6    &kp RET  &kp N8 &kp DEL   &kp DEL  &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT  &kp DOWN &kp UP &kp RIGHT &kp BSPC &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &kp EQUAL &kp ESC  &trans &trans    &trans   &trans
-                          	        &kp LGUI     &trans       &kp SPACE      &kp RET   &trans   &kp RALT
+   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4         &kp N6      &kp RET    &kp N8   &kp DEL     &kp DEL    &kp BSPC
+   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5               &kp LEFT    &kp DOWN   &kp UP   &kp RIGHT   &kp BSPC   &trans
+   &kp LSHFT  &trans       &trans       &trans       &trans       &trans               &kp EQUAL   &kp ESC    &trans   &trans      &kp BSLH   &trans
+                          	        &kp LGUI     &kp RALT      &kp LA(SPACE)             &kp RET   &trans   &kp RALT
                         >;
                 };
 
                 raise_layer {
                         label = "RAISE";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  GUI_Q  |  GUI_W  |  #    |  GUI_R  |  GUI_T  |   |  ^  |  &   |  *  |  (  |  )  | BKSP |
-// |      |         |         |       |         |         |   |  -  |  =   |  [  |  ]  |  \  | "|"  |
-// | CTRL |         |  GUI_X  | GUI_C |  GUI_V  |         |   |  _  |  ENT |  {  |  }  | "|" |  `   |
+// | GUI_TAB         |  GUI_Q           |  GUI_W  |  #    |  ALT_ENT |  GUI_T     |   |  ^  |  GUI_U |  *  |   GUI_ALT_O |  GUI_P  | BKSP |
+// | CTRL_SHFT_LAYER |  GUI_SHFT_A      |  GUI_S  |       |  GUI_F   |  GUI_SFT_G |   |  -  |  =     |  [  |  GUI_ALT_L  |      \  | "|"  |
+// |       CTRL      |  GUI_CTRL_SHFT_4 |  GUI_X  | GUI_C |  GUI_V   |  GUI_ALT_B |   |  _  |  ENT   |  {  |     }       |      \  |  `   |
 //                            | GUI   |         | SPC     |   | ENT |      | ALT |
                         bindings = <
-   &kp  TAB  &kp LG(Q) &kp LG(W) &kp HASH  &kp LG(R) &kp LG(T)  &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-   &trans    &trans    &trans    &trans    &trans    &trans     &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp PIPE
-   &kp LCTRL &trans    &kp LG(X) &kp LG(C) &kp LG(V) &trans     &kp UNDER &kp RET   &kp LBRC        &kp RBRC &kp PIPE &kp GRAVE
+   &kp  LG(TAB)         &kp LG(Q)          &kp LG(W) &kp HASH  &kp LA(RET) &kp LG(T)       &kp CARET &kp LG(U)  &kp KP_MULTIPLY &kp LG(LA(O))  &kp LG(P) &kp BSPC
+   &mo CTRL_SHFT_LAYER  &kp LG(LS(A))      &kp LG(S) &trans    &kp LG(F)   &kp LG(LS(G))   &kp MINUS &kp EQUAL  &kp LBKT        &kp LG(LA(L))  &kp BSLH      &kp PIPE
+   &mo CTRL_LAYER       &kp LG(LC(LS(N4))) &kp LG(X) &kp LG(C) &kp LG(V)   &kp LG(LA(B))   &kp UNDER &kp RET    &kp LBRC        &kp RBRC       &kp BSLH      &kp GRAVE
                     	     &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
                         >;
                 };
@@ -69,13 +71,43 @@
 		// |  TAB |  !  |  @  |  {  |  }  |  |  |   |  /  |  7  |  8  |  9  |  &  |   \  |
 		// |      |  #  |  $  |  (  |  )  |  `  |   |  *  |  4  |  5  |  6  |  0  |   "  |
 		// |      |  %  |  ^  |  [  |  ]  |  ~  |   |  +  |  1  |  2  |  3  |  .  |      |
-		//                    | GUI |     | SPC |   |     |     |     |
+		//                    | GUI |     | SPC |   |     |  _  |  -  |
 					bindings = <
-		   &kp TAB &kp EXCL  &kp AT    &kp LBRC &kp RBRC &kp PIPE                           &kp FSLH        &kp N7   &kp N8   &kp N9 &kp AMPS &kp BSLH
-		   &trans  &kp HASH  &kp DLLR  &kp LPAR &kp RPAR &kp GRAVE                          &kp KP_MULTIPLY &kp N4   &kp N5   &kp N6 &kp N0   &kp DQT
-		   &trans  &kp PRCNT &kp CARET &kp LBKT &kp RBKT &kp TILDE                          &kp PLUS        &kp N1   &kp N2   &kp N3 &kp DOT  &trans
-				    &kp LGUI     &trans       &kp SPACE                                       &kp RET  &trans   &kp RALT
+		   &kp TAB &kp EXCL  &kp AT    &kp LBRC &kp RBRC &kp PIPE           &kp FSLH        &kp N7   &kp N8   &kp N9 &kp AMPS &kp BSLH
+		   &trans  &kp HASH  &kp DLLR  &kp LPAR &kp RPAR &kp GRAVE          &kp KP_MULTIPLY &kp N4   &kp N5   &kp N6 &kp N0   &kp DQT
+		   &trans  &kp PRCNT &kp CARET &kp LBKT &kp RBKT &kp TILDE          &kp PLUS        &kp N1   &kp N2   &kp N3 &kp DOT  &trans
+				               &kp LGUI     &trans       &kp SPACE               &kp RET  &kp MINUS &kp UNDER
 					>;
-				};        
+				};
+
+                ctrl_layer {
+                        label = "CTRL_LAYER";
+// -----------------------------------------------------------------------------------------
+// |                 | MUTE   | VOL_DOWN | VOL_UP |  CTRL_R |  CMD_SHFT_T |          |     |      |     |     | GUI_ALT_P |      |
+// | CTRL_SHFT_LAYER | CTRL_A |          |        |         |  CMD_SHFT_G |          |     |      |     |     |           |      |
+// | CTRL            |        |          | CTRL_C |  GUI_V  |             |          |     |      |     |     |           |      |
+//                      |     |      |      |               |     |      |     |
+                        bindings = <
+   &trans                &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp LC(R) &kp LG(LS(T))          &trans          &trans &trans &trans &kp LG(LA(P)) &trans
+   &mo CTRL_SHFT_LAYER   &kp LC(A)   &trans        &trans        &trans    &trans                 &kp LG(LS(G))   &trans &trans &trans &trans        &trans
+   &kp LCTRL             &trans      &trans        &kp LC(C)     &kp LC(V) &trans                 &trans          &trans &trans &trans &trans        &trans
+                    	     &trans &trans   &trans               &trans   &trans    &trans
+                        >;
+                };
+
+                ctrl_shft_layer {
+                        label = "CTRL_SHFT_LAYER";
+// -----------------------------------------------------------------------------------------
+// |                 | MUTE   | VOL_DOWN | VOL_UP |  CTRL_SHFT_R |  CMD_SHFT_T |          |     |      |     |     | GUI_ALT_P |      |
+// | CTRL_SHFT_LAYER | CTRL_A |          |        |              |  CMD_SHFT_G |          |     |      |     |     |           |      |
+// | CTRL            |        |          | CTRL_C |  GUI_V       |             |          |     |      |     |     |           |      |
+//                                            |     |      |      |               |     |      |     |
+                        bindings = <
+   &trans                &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp LC(LS(R)) &kp LG(LS(T))          &trans          &trans &trans &trans &kp LG(LA(P)) &trans
+   &mo CTRL_SHFT_LAYER   &kp LC(A)   &trans        &trans        &trans        &trans                 &kp LG(LS(G))   &trans &trans &trans &trans        &trans
+   &kp LCTRL             &trans      &trans        &kp LC(C)     &kp LC(V)     &trans                 &trans          &trans &trans &trans &trans        &trans
+                    	     &trans &trans   &trans               &trans   &trans    &trans
+                        >;
+                };
 	};
 };
